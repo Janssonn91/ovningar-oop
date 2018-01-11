@@ -1,12 +1,15 @@
 class Person {
 
   constructor(data) {
-    this._name = data.name;
-    this._age = data.age;
+    if (data.age > 0 && data.age < 100) {
+      this._name = data.name;
+      this._age = data.age;
+    } else {
+      alert('Din ålder är fel');
+    }
   }
 
   set age(changeAge) {
-
     if (changeAge > 0 && changeAge < 100) {
       this._age = changeAge;
     } else {
@@ -18,10 +21,16 @@ class Person {
     return this._age;
   }
 
-}
-let niklas = new Person( {age: 26, name: 'niklas'} );
+  set name(val) {
+    if (val.length > 2) {
+      this._name = val;
+    } else {
+      alert('Du har inget namn, My!')
+    }
+  }
 
-// {
-//   _name: 'niklas',
-//   _age: 26
-// }
+  get name() {
+    return this._name = this._name.slice(0, 15);
+  }
+}
+let niklas = new Person( {age: 26, name: 'Niklas'} );
